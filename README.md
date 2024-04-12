@@ -1,3 +1,5 @@
+install with --force
+
 There is a need to implement a never-ending stream of new products.
 
 Use API https://chroniclingamerica.loc.gov/search/titles/results/?terms=oakland&format=json&page=5.
