@@ -1,4 +1,4 @@
-import { Action, Store, applyMiddleware } from "redux";
+import { applyMiddleware } from "redux";
 import { legacy_createStore as createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import rootReducer from "./reducer";
@@ -12,29 +12,14 @@ export type AppState = {
   news: NewsState;
 };
 
-export type AppAction = {
-  type: string;
-  payload?: unknown;
-};
-
 const sagaMiddleware = createSagaMiddleware();
-const composedEnhancer = composeWithDevTools(
-  // Add whatever middleware you actually want to use here
-  applyMiddleware(sagaMiddleware)
-  // other store enhancers if any
-);
+const composedEnhancer = composeWithDevTools(applyMiddleware(sagaMiddleware));
 const store = createStore(
   rootReducer,
   { news: initialState },
   composedEnhancer
 );
 export const useAppDispatch = () => useDispatch<typeof store.dispatch>();
-
-// Use the reducer with createStore
-// const store = createStore(
-//   rootReducer,
-//   composeWithDevTools(applyMiddleware(sagaMiddleware))
-// );
 export default store;
 
 sagaMiddleware.run(rootSaga);

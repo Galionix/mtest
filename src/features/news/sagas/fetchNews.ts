@@ -1,5 +1,3 @@
-// redux-saga to fetch news
-
 import { put, takeLatest, call } from "redux-saga/effects";
 import { fetchNewsFailure, fetchNewsSuccess } from "../actions";
 import { FETCH_NEWS } from "../action.types";
